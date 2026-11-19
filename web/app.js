@@ -1,4 +1,3 @@
-import createDictionaryModule from "./dictionary.js";
 const $ = (s) => document.querySelector(s);
 let wasm;
 let toastTimer;
@@ -29,10 +28,23 @@ function search(word) {
     value.className = "translation";
     value.textContent = translation;
     text.append(value);
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "remove-button";
+    remove.textContent = "Remove";
+    remove.addEventListener("click", () => {
+      const removed = withString(word, (ptr) => wasm._wasm_remove(ptr));
+      if (removed) {
+        box.className = "result missing";
+        box.textContent = "Entry removed.";
+        toast("Entry removed from the dictionary.");
+      }
+    });
+    box.append(text, remove);
   } else {
     text.textContent = "“" + word + "” is not in this dictionary yet. Add it below.";
+    box.append(text);
   }
-  box.append(text);
 }
 $("#search-form").addEventListener("submit", (event) => {
   event.preventDefault();
@@ -50,7 +62,7 @@ $("#entry-form").addEventListener("submit", (event) => {
   search(word);
   $("#entry-word").value = "";
   $("#entry-translation").value = "";
-  toast("Entry added to the in-memory dictionary.");
+  toast("Entry added or updated in the dictionary.");
 });
 $("#clear-button").addEventListener("click", () => {
   if (!wasm) return;
@@ -66,6 +78,7 @@ document.querySelectorAll("[data-word]").forEach((button) => {
   });
 });
 try {
+  const { default: createDictionaryModule } = await import("./dictionary.js");
   wasm = await createDictionaryModule();
   wasm._wasm_init();
   const examples = [["hello","a greeting"],["world","the earth; all people and places"],["мачка","cat"],["Македонија","North Macedonia"],["карта","map"],["Map42","A map with numeric suffix"]];
