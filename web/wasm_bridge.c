@@ -1,8 +1,9 @@
 #include <emscripten/emscripten.h>
+#define main unicode_avl_trie_console_demo
 #include "../unicode_avl_trie.c"
+#undef main
 
 static Dictionary *dictionary_root = NULL;
-
 EMSCRIPTEN_KEEPALIVE void wasm_init(void) {
     dictionary_free(dictionary_root);
     dictionary_root = NULL;
