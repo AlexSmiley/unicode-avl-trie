@@ -35,8 +35,13 @@ gcc -std=c11 -O2 -Wall -Wextra -pedantic unicode_avl_trie.c -o unicode_avl_trie
 ```sh
 ./unicode_avl_trie
 ```
+sh web/build.sh
+cd web
+python3 -m http.server 8000
 
 The included `main` demonstrates English words, mixed-case input, digits, Macedonian Cyrillic, searching, and removal.
+
+frontend examle: https://unicode-avl-trie-web.vercel.app/
 
 ## API
 
