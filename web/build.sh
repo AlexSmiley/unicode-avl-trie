@@ -7,8 +7,8 @@ if ! command -v emcc >/dev/null 2>&1; then
   exit 1
 fi
 emcc web/wasm_bridge.c -O2 -std=c11 -Wall -Wextra \
-  -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createDictionaryModule \
+  -sNO_ENTRY=1 -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createDictionaryModule \
   -sEXPORTED_FUNCTIONS='["_wasm_init","_wasm_add","_wasm_search","_wasm_remove","_wasm_clear","_malloc","_free"]' \
-  -sEXPORTED_RUNTIME_METHODS='["UTF8ToString"]' \
+  -sEXPORTED_RUNTIME_METHODS='["UTF8ToString","allocateUTF8"]' \
   -o web/dictionary.js
 echo "Build complete. Serve web/ over HTTP (not file://)."
