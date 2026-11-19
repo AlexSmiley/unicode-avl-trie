@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10151d">
+<title>Unicode AVL Trie · Dictionary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="glow"></div><main class="shell">
+<header><a class="brand" href="#"><b>字</b> UNICODE <span>/ AVL TRIE</span></a><div class="engine"><i id="engine-dot"></i><span id="engine-label">Loading WebAssembly…</span></div></header>
+<section class="hero"><div class="eyebrow">A DICTIONARY THAT SPEAKS EVERY CHARACTER</div><h1>Words, balanced<br><em>at every level.</em></h1><p>Explore a Unicode-aware dictionary powered by a Trie with AVL-balanced character branches. Search, add, and manage entries directly in your browser.</p><div class="features"><span>01&nbsp; Unicode / UTF-8</span><span>02&nbsp; AVL-balanced branches</span><span>03&nbsp; WebAssembly / C11</span></div></section>
+<section class="workspace">
+<article class="panel"><div class="panel-head"><div><small>01 / LOOKUP</small><h2>Find a word</h2></div><label>INSTANT SEARCH</label></div>
+<form id="search-form"><input id="search-word" placeholder="Type a word… e.g. Македонија" autocomplete="off" required><button>Search ↗</button></form>
+<div id="search-result" class="result" aria-live="polite">⌕ &nbsp; Search for a word to see its translation.</div></article>
+<article class="panel"><div class="panel-head"><div><small>02 / DICTIONARY</small><h2>Manage entries</h2></div><label>UTF-8 READY</label></div>
+<form id="entry-form" class="entry-form"><label for="entry-word">WORD</label><input id="entry-word" placeholder="e.g. мачка" required><label for="entry-translation">TRANSLATION</label><textarea id="entry-translation" rows="2" maxlength="511" placeholder="Enter a meaning or translation…" required></textarea><button class="secondary">Add to dictionary ＋</button></form>
+<div class="manage-footer"><span>Maximum 511 UTF-8 bytes per translation</span><button id="clear-button" type="button">Clear dictionary</button></div></article>
+</section>
+<section class="lower"><article class="panel"><small>HOW IT WORKS</small><h3>A Trie with balanced branches.</h3><p>Each level stores alternative Unicode code points in an AVL tree. The next pointer advances to the next character position, keeping shared prefixes compact.</p><div class="structure"><span>ROOT</span> → <b>м</b> → <b>а</b> → <b>ч</b> → <b class="terminal">ка</b></div></article>
+<article class="panel"><small>TRY THESE</small><h3>Start with an example.</h3><p>Load a sample word into the search field.</p><div class="samples"><button data-word="hello">hello →</button><button data-word="мачка">мачка →</button><button data-word="Македонија">Македонија →</button><button data-word="Map42">Map42 →</button></div></article></section>
+<footer><span>UNICODE AVL TRIE</span><span>C11 CORE · COMPILED TO WEBASSEMBLY</span><a href="https://github.com/AlexSmiley/unicode-avl-trie" target="_blank" rel="noreferrer">VIEW SOURCE ↗</a></footer>
+</main><div id="toast" role="status"></div><script type="module" src="./app.js"></script>
+</body></html>
