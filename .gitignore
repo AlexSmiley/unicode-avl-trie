@@ -1,0 +1,8 @@
+# Compiled executable
+unicode_avl_trie
+*.o
+
+# Debug/build artifacts
+*.out
+core
+core.*
